@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Download
-permalink: /download/
+title: Neutrinos
+permalink: /neutrinos/
 
 tagline: "Loved it? Download Gravity"
 ---
