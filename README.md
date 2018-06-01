@@ -1,182 +1,74 @@
-<p align = "center">
-<img src="http://i.imgur.com/JhbQ03z.png"/>
-</p>
+# Particle Jekyll Theme
 
----
+![](./particle.jpg)
 
-If there's any issue you are facing in setting up this theme I'm there for you. Just create an issue in this repository (<http://github.com/hemangsk/Gravity>), (<https://help.github.com/articles/creating-an-issue/>) and I'll get back to you asap.
+This is a simple and minimalist template for Jekyll designed for developers that want to show of their portfolio.
 
-![Welcome to Gravity](https://user-images.githubusercontent.com/13018570/27043040-778d80cc-4fb6-11e7-8619-de4be626be67.png)
-<img src="http://i.imgur.com/cPwoX3E.png"/>
-<img src="http://i.imgur.com/3TMoBGj.png"/>
-<img src="http://i.imgur.com/Z6h3uCp.png"/>
-<img src="http://i.imgur.com/bB7IIHr.png"/>
+The Theme features:
 
-***
+- Gulp
+- SASS
+- Sweet Scroll
+- Particle.js
+- BrowserSync
+- Font Awesome and Devicon icons
+- Google Analytics
+- Info Customization
 
-# INSTALLATION
+## Basic Setup
 
-### Dependencies
+1. [Install Jekyll](http://jekyllrb.com)
+2. Fork the [Particle Theme](https://github.com/nrandecker/particle/fork)
+3. Clone the repo you just forked.
+4. Edit `_config.yml` to personalize your site.
 
-Gravity uses Jekyll and it's built-in SCSS compiler for the associated CSS, so the first thing you'll need is Jekyll itself:
+## Site and User Settings
 
-```bash
-$ gem install jekyll
-```
-
-In case you don't have the `bundler` gem installed already, you can install it as follows:
-
-```bash
-$ gem install bundler
-```
-
-For pagination, Gravity uses the [jekyll-paginate](https://jekyllrb.com/docs/pagination/) gem :
-
-```bash
-$ gem install jekyll-paginate
-```
-
-***
-
-# USAGE
-
-Once you have the required gems, you can go ahead and clone the
-[Gravity repository](https://github.com/hemangsk/Gravity) or [download](https://github.com/hemangsk/Gravity/archive/master.zip)
-a zip of the master branch.
-
-Run :
-
-```bash
-$ jekyll serve
-```
-
-Jekyll should now be generating your content!
-
-***
-
-# ADDING POSTS
-
-The theme by default ships with starter posts located in `_posts/`. Delete these posts and add your content to the `_posts`
-folder to see them being served up by Jekyll. [This](https://jekyllrb.com/docs/posts/) would be a good guide to getting started on writing posts using Jekyll. We've added a concise guide below:
-
-- Create a .markdown file inside `_posts` folder.
-- Name the file according to the format YY-MM-DD-[short name for your post].
-- `2016-03-30-i-love-design.markdown`
-- Write the *Front Matter* and content in the file.
-
-### FORMAT
+You have to fill some informations on `_config.yml` to customize your site.
 
 ```
----
-layout: post | default | page
-title: String POST TITLE
-date: Time Stamp
-categories: String | Array of Strings CATEGORY / CATEGORIES
----
+# Site settings
+description: A blog about lorem ipsum dolor sit amet
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://localhost:3000" # the base hostname & protocol for your site
 
----
-layout: post
-title: "The One with the Blackout"
-date: 2016-03-30 19:45:31 +0530
-categories: ["life", friends]
----
+# User settings
+username: Lorem Ipsum
+user_description: Anon Developer at Lorem Ipsum Dolor
+user_title: Anon Developer
+email: anon@anon.com
+twitter_username: lorem_ipsum
+github_username:  lorem_ipsum
+gplus_username:  lorem_ipsum
 ```
 
-***
+**Don't forget to change your url before you deploy your site!**
 
-# CREATE PAGES
+## Color and Particle Customization
+- Color Customization
+  - Edit the sass variables
+- Particle Customization
+  - Edit the json data in particle function in app.js
+  - Refer to [Particle.js](https://github.com/VincentGarreau/particles.js/) for help
 
-- Create a .md file in the root directory.
-- Name the file with the desired page link name.
-  `about.md`
-  `design.md`
-- Write the *Front Matter* and content in the file.
+## Running the blog in local
 
-### FORMAT
+In order to compile the assets and run Jekyll on local you need to follow those steps:
 
-```
----
-layout: page
-title: String TITLE OF THE WEBPAGE
-permalink: / String / PERMALINK FOR THE WEBPAGE
-tagline: String OPTIONAL GRAVITY FEATURE : TAGLINE FOR THE PAGE
----
+- Install [NodeJS](https://nodejs.org/)
+- Run `npm install`
+- Run `gulp`
 
----
-layout: page
-title: "Science"
-permalink: /science/
-tagline: "Humanity is overrated."
----
-```
+## Questions
 
-***
+Having any issues file a [GitHub Issue](https://github.com/nrandecker/particle/issues/new).
 
-#### Introducing
+## License
 
-# ARCHIVE PAGES
+This theme is free and open source software, distributed under the The MIT License. So feel free to use this Jekyll theme anyway you want.
 
-#### You can display a list of all the posts corresponding to a particular category on a standalone page using the `ARCHIVE` layout.
+## Credits
 
-- Create a .md file in the root directory.
-- Name the file. Preferred name will be the name of the category.
-    \*`life.md`
-- Write the *Front Matter* and content in the file.
-
-### FORMAT
-
-```
----
-layout: archive ARCHIVE PAGE LAYOUT
-title: String TITLE OF THE WEBPAGE
-permalink: / String / PERMALINK FOR THE WEBPAGE
-tagline: String TAGLINE FOR THE PAGE
-category: String NAME OF THE CATEGORY OF WHICH THE PAGE WILL SHOW POSTS
----
-
----
-layout: archive
-title: "Design"
-permalink: "Design"
-tagline: "It's all about perception"
-category: "design"
----
-```
-
-#### DIRECTORY STRUCTURE
-
-```
-├── css                                         # => Output of the combined SASS files
-│   └── style.scss
-├── _includes                                   # => Contains partials that can be used with your layouts
-│   ├── footer.html
-│   ├── header.html
-│   ├── head.html
-│   ├── icon-github.html
-│   ├── icon-github.svg
-│   ├── icon-twitter.html
-│   └── icon-twitter.svg
-├── _layouts                                    # => Layout related HTML files
-│   ├── archive.html
-│   ├── default.html
-│   ├── page.html
-│   └── post.html
-├── _posts                                      # => posts, dynamic content. Follow the format: YEAR-MONTH-DAY-title.MARKUP
-│   ├── 2016-03-30-design-stories.markdown
-│   ├── 2016-03-30-science0.markdown
-│   ├── 2016-03-30-science.markdown
-│   └── 2016-03-30-welcome-to-jekyll.markdown
-└── _sass                                       # => SASS partials for styling
-|   ├── _base.scss
-|   ├── _layout.scss
-|   └── _syntax-highlighting.scss
-├── about.md
-├── _config.yml                                 # => Configuration options or flags for your site go here
-├── design.md
-├── download.md
-├── feed.xml
-├── index.html
-├── LICENSE.txt                                 # => Licensing information
-├── README.md
-└── science.md
-```
+This theme was partially designed with the inspiration from these fine folks
+- [Willian Justen](https://github.com/willianjusten/will-jekyll-template)
+- [Vincent Garreau](https://github.com/VincentGarreau/particles.js/)
