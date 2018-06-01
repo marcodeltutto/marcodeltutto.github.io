@@ -95,17 +95,17 @@ var number_of_balls = 50;
 var balls = [];
 var radius = 200;
 ctx.lineWidth = 1;
-var max_distance = 100;
+var max_distance = 200;
 var max_distance_neutrino = 200;
 var speed_balls = 1;
-var speed_neutrino = 5;
+var speed_neutrino = 2;
 
 var neutrino = {
     x: 10,
     y: random(h),
     speed_x: random(0.2, 1) * speed_neutrino,
     speed_y: 0,
-    size: 10,
+    size: 5,
     colour: rgb(153, 0, 0),
     angle: i * 360/number_of_balls
 }
@@ -187,9 +187,9 @@ function drawConnections(_i) {
     if (j!=i) {
       if (dist(b1.x, b1.y, b2.x, b2.y) < max_distance) {
           normalised_distance = 1 -(dist(b1.x, b1.y, b2.x, b2.y) / max_distance);
-          ctx.strokeStyle = rgb(255*normalised_distance);
+          ctx.strokeStyle = rgb(160*normalised_distance);
           ctx.lineWidth=0.5;
-          if (255*normalised_distance > 100) {
+          if (255*normalised_distance > 80) {
             ctx.line(b1.x, b1.y, b2.x, b2.y);
           }
       }
@@ -209,8 +209,8 @@ function drawNeutrinoConnection(_i) {
       if (dist(b1.x, b1.y, b2.x, b2.y) < max_distance_neutrino) {
           normalised_distance = 1 -(dist(b1.x, b1.y, b2.x, b2.y) / max_distance_neutrino);
           ctx.strokeStyle = rgb(153*normalised_distance, 0, 0);
-          ctx.lineWidth=1;
-          if (255*normalised_distance > 100) {
+          ctx.lineWidth=0.5;
+          if (153*normalised_distance > 100) {
             ctx.line(b1.x, b1.y, b2.x, b2.y);
           }
       }
