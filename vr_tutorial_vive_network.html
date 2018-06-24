@@ -1,0 +1,126 @@
+---
+layout: tutorial
+---
+
+
+
+<h1>HTC Vive Tutorial: Setting Up a Scene with multiple VR Users Connected over the Network</h1>
+
+
+In this tutorial you will learn how to setup a Unity project that works with an HTC Vive and that allows several users to join the same scene over the network.<br><br>
+
+Start by doing the <a href="vr_tutorial_vive.html">first tutorial</a> on how to setup the project with Unity.
+
+
+
+<h2>Network Manager</h2>
+
+Firt of all we need to instantiate a game network manager. 
+
+To do this, start by creting an empy GameObject in the Scene. Call it GameController and tag it as GameController.<br><br>
+
+Add the NetworkManager coponent to this GameObject. Also add the NetworkManagerHUB.<br><br>
+
+Open the Network Manager component and expand the Network Info section. You can see that the address is set to "localhost". That's the computer you are currently operating.<br><br>
+
+The NetworkManagerHUB is a user interface that allows you to work with the network settings at runtime.<br><br>
+
+If you run the game now you will see the interface on the screen.<br><br>
+
+<h2>Network Identity</h2>
+
+Any game object in your game that will be controlled by a player in the game needs a network identity component attached.<br><br>
+
+Let's create a new empty game object and let's call it Player. You may want to add a person prefab to render the player. For now, just add a spere and add it a material with some king of skin colour. It can be the base for the user head.<br><br>
+
+Add a new component to the Player game object. Search and add for "Network Identity". Then select Local Player Authority, this means that this player controls this game object.<br><br>
+
+You want the user to be able to see into the scene. For this you'll need to create a new Camera in the scene. Click on Create and the on Camera in the Hierarchy. Add an empy GameObject in the Scene called "MainCameraRig", and drag the newly created Camera in it.<br><br>
+
+Now go back to you Player prefab. When a new user joins the scene, we want the Camera to be attached to their head, like if it was their eyes. Crate a new script called "PlaceCamera" and add it as a component to the Player. Replace the code in the script with this one:
+
+{% highlight cpp linenos %}
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Networking;
+ 
+public class PlaceCamera : NetworkBehaviour {
+ 
+    private GameObject cameraRigToGrab;
+ 
+    public override void OnStartLocalPlayer()
+    {
+        cameraRigToGrab = GameObject.Find("MainCameraRig"); // actually camera's parent, the name must be extact
+        if (isLocalPlayer)
+        {
+            cameraRigToGrab.transform.position = transform.position;
+            cameraRigToGrab.transform.rotation = transform.rotation;
+            cameraRigToGrab.transform.SetParent(transform);
+ 
+            return;
+        }
+    }
+}
+{% endhighlight %} 
+
+Note that "PlaceCamera" inherits from "NetworkBehaviour" and not "MonoBehaviour".<br><br>
+
+But we also want the player to be able to look around. Let's add this other script to the Player game object, called "MoveCamera":
+
+{% highlight cpp linenos %}
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Networking;
+
+public class MoveCamera : NetworkBehaviour {
+
+    public float speed = 10.0F;
+    public float rotationSpeed = 100.0F;
+
+    void Update() {
+
+        if (!isLocalPlayer) {
+            return;
+        }
+        float translation = Input.GetAxis("Vertical") * speed;
+        float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
+
+        translation *= Time.deltaTime;
+        rotation *= Time.deltaTime;
+        transform.Translate(0, 0, translation);
+        transform.Rotate(0, rotation, 0);
+    }
+}
+{% endhighlight %} 
+
+You will be able to move the player by using the arrows on your keyboard, or the "wsad" keys.<br><br>
+
+Now you want to create a prefab for you player game object. Drag the Player game object down into the Assets window, and then delete it from the hirarchy. It is the network job to instantiate the Player in our scene, once a new user joins.<br><br>
+
+Now select the GameController prefab in the Hierarchy and expand the NetworkManager and the Spawn Info tab. Select our newly created Player prefab and drag and drop it in the Player Prefab slot.<br><br>
+
+Run the game now and selects "LAN Host(H)". You will see the player appearing in the scene.<br><br>
+
+To test this is actually working, build the game and open it. In this way you can run 2 copies of your app, one from the build, and one from the editor. <br><br>
+
+From the built verion, select "LAN Host(H)". Also run the game from the editor, and here select "LAN Client(C)".<br><br>
+
+You will see that the two players will be instantiated in the same point. We will fix this later. For now restart the apps, but before instantiating the second user, move the first a little bit, so that they won't collide.
+
+
+<h2>Network Identity</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
