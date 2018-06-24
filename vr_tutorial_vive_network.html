@@ -64,7 +64,7 @@ public class PlaceCamera : NetworkBehaviour {
 }
 {% endhighlight %} 
 
-Note that "PlaceCamera" inherits from "NetworkBehaviour" and not "MonoBehaviour".<br><br>
+Note that "PlaceCamera" inherits from "NetworkBehaviour" and not "MonoBehaviour". Also note the include of "UnityEngine.Networking". NetworkBehaviour extends Mono with additional features.<br><br>
 
 But we also want the player to be able to look around. Let's add this other script to the Player game object, called "MoveCamera":
 
@@ -110,13 +110,36 @@ From the built verion, select "LAN Host(H)". Also run the game from the editor, 
 You will see that the two players will be instantiated in the same point. We will fix this later. For now restart the apps, but before instantiating the second user, move the first a little bit, so that they won't collide.
 
 
-<h2>Network Identity</h2>
+<h2>Network Transform</h2>
+
+In the previous example each player will be able to move both users. We are now going to fix it so that each user will only be able to control their own camera.<br><br>
+
+Drag again the Player prefab in the scene, and add a new component, called "NetworkTranform". This component is responsible for sending position updates on the network.<br><br>
+
+In the MoveCamera script, at the beginning of the Update method, add the following lines:
+
+{% highlight cpp linenos %}
+if (!isLocalPlayer) {
+    return;
+}
+{% endhighlight %}
+
+In this way the movement to the camera will be effective only if the current user is the local player.
 
 
 
+<h2>Other Objects</h2>
+
+If you have other objects that must be seen in the network, you need to add the "NetworkIdentity". Als add the "NetworkTranform" component. You will also need to add them to the GameController: cick on the GameController and expand the Spawn Info; add the prefabs to the "Registered Spawnable Prefabs" list. Game objects with these components attached will be visible by all the users. 
 
 
-
+{% highlight cpp linenos %}
+[Command]
+void CmdInstantiate() {
+    var cube = Instantiate(CubePrefab, CubeSpawnTransform.position, Quaternion.identity) as GameObject;
+    NetworkSerever.Spawn(var);
+}
+{% endhighlight %}
 
 
 
