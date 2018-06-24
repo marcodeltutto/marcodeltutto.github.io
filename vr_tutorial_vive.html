@@ -13,13 +13,13 @@ In this tutorial you will learn how to setup a Unity project that works with Ste
 
 <h2>Setting up a scene in Unity rendered on the Vive</h2>
 
-One Unity and start a new project.<br><br>
+Open Unity and start a new project.<br><br>
 
 <a href="downloads/UnityRoomStarter.unitypackage">Here</a> you can download a starting Unity package with the asset of room, just to have an enrionment to start.<br><br>
 
 Go to Unity, Assets > Import Package > Custom Package... and select the one you just downloaded. Then click on Import.<br><br>
 
-You will see a new folder below the Assetes one. Open it, then go to Prefabs. Drag the Room prefab into the scene. This is just to facilitate this tutorial, as this prefab only contains the rendering of a room, with a table and a few boxes.<br><br>
+You will see a new folder below the Assets one. Open it, then go to Prefabs. Drag the Room prefab into the scene. This is just to facilitate this tutorial, as this prefab only contains the rendering of a room, with a table and a few boxes.<br><br>
 
 Remove the "Directional Light" from the scene, as the Room prefabs contains lights.<br><br>
 
@@ -116,14 +116,13 @@ Hit play and monitor the Console while you start playing with the controller. <b
 
 In this part of the tutorial you will understand how to grab objects from the scene.<br><br>
 
-First of all select both controllers in the Scene, then go in the Inspector, click on "Add Component", and search for Rigidbody. In the Rigidbody properties, check the Is Kinematic box, and not the Use Gravity one. We don't want to have any gravitation force applied on them.<br><br>
+First of all select both controllers in the Scene, then go in the Inspector, click on "Add Component", and search for Rigidbody. In the Rigidbody properties, check the "Is Kinematic" box, and not the "Use Gravity" one. We don't want to have any gravitational force applied on them.<br><br>
 
-In orded to have object collide or to understand the intersection of two objects in Unity, the objects must have a collider component attached. As you have done for the Rigidbody one, serach and add the "Box Collider" component.<br><br>
+In orded to have object collide with each other or to understand their intersection in Unity, the objects must have a collider component attached. As you have done for the Rigidbody one, serach and add the "Box Collider" component.<br><br>
 
 Hit Play and then click on the Scene tab. Select the Controller in the hierarchy and resize the collider box so that it wraps the end circular part of the controller only. This will allow us to have a boundary around the controller, that we can use to understand if other objects are crossing that boundary or not.<br><br>
 
 Now open the same script as before. Add this two additional variables just after the trackedObj one:
-
 
 {% highlight cpp linenos %}
 private SteamVR_TrackedObject trackedObj;
@@ -282,7 +281,7 @@ laser = Instantiate(laserPrefab);
 laserTransform = laser.transform;
 {% endhighlight %}
 
-Finally, add this in Update method:
+Finally, add this in the Update method:
 
 {% highlight cpp linenos %}
 if (Controller.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
@@ -301,7 +300,7 @@ else
 }
 {% endhighlight %}
 
-Drag the script and drop it in the Inspector, with both controllers selected. You can see that one of the properties is the Laser Prefab. Drag the Laser prefab that you find the Prefab folder, and drop it into that field.<br><br>
+Drag the script and drop it in the Inspector, with both controllers selected. You can see that one of the properties is the Laser Prefab. Drag the Laser prefab that you find in the Prefab folder, and drop it into that field.<br><br>
 
 Hit Play! You should see a red laser coming out of the controller when you click the trackpad. 
     
