@@ -97,8 +97,8 @@ var radius = 200;
 ctx.lineWidth = 1;
 var max_distance = 200;
 var max_distance_neutrino = 200;
-var speed_balls = 1;
-var speed_neutrino = 2;
+var speed_balls = 0.2;
+var speed_neutrino = 4;
 
 var neutrino = {
     x: 10,

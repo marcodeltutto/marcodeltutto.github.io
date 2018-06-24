@@ -2627,12 +2627,22 @@ sub, sup {
     margin: 0 auto;
     max-width: 960px;
 }
+
+
+
+
+
+
+
 @media only screen and (min-width:550px) {
     #about {
     width: 80%}
 }.tech {
     /*margin: 10px;*/
 }
+
+
+
 .user {
     text-align: center;
     font-size: 60px;
@@ -2653,6 +2663,9 @@ sub, sup {
     text-align: center;
     margin: 5px auto;
 }
+
+
+/*Settings for the Projects sections*/
 #projects {
     display: flex;
     flex-direction: column;
@@ -2661,6 +2674,7 @@ sub, sup {
     max-width: 960px;
     margin: 0 auto;
 }
+
 @media only screen and (min-width:550px) {
     #projects {
     width: 80%}
@@ -2682,6 +2696,28 @@ sub, sup {
 .user-projects p {
     margin-right: 5px;
 }
+
+
+
+
+
+/*Settings for the Tutorial sections*/
+#tutorials {
+    display: block;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+
+
+
+
+
+
+
 @media only screen and (min-width:550px) {
     .contents {
     margin-left: 0;
@@ -2715,6 +2751,9 @@ sub, sup {
     cursor: pointer;
     transition: color .3s ease-out, background-color .3s ease-out, border-color .3s ease-out;
 }
+
+
+
 .project-link:active, .project-link:hover {
     background-color: #54516a;
     border-color: #54516a;

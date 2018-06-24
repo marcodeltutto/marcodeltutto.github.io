@@ -6,13 +6,16 @@ layout: tutorial
 
 <h1>HTC Vive Warm-Up Tutorial</h1>
 
-<h2>Setting up a scene in Unity rendered on the Vive</h2>
 
-In this tutorial you will learn how to setup a Unity project that works with SteamVR and that can interface with an HTC Vive. <br><br>
+In this tutorial you will learn how to setup a Unity project that works with SteamVR and that can interface with an HTC Vive. 
+
+
+
+<h2>Setting up a scene in Unity rendered on the Vive</h2>
 
 One Unity and start a new project.<br><br>
 
-Here you can download a starting Unity package with the asset of room, just to have an enrionment to start.<br><br>
+<a href="downloads/UnityRoomStarter.unitypackage">Here</a> you can download a starting Unity package with the asset of room, just to have an enrionment to start.<br><br>
 
 Go to Unity, Assets > Import Package > Custom Package... and select the one you just downloaded. Then click on Import.<br><br>
 
@@ -52,7 +55,7 @@ In this part you will try to interact with the boxes in the scene. You want the 
 Create a new folder called "Scripts", and then right click in it and select Create C# Script. Call the script "ControllerGrabObject" and open it with your favorite text editor.
 
 
-{% highlight cpp %}
+{% highlight cpp linenos %}
 private SteamVR_TrackedObject trackedObj;
 {% endhighlight %}
 
@@ -60,7 +63,7 @@ The "trackedObj" is the object being tracked: the Vive controller.
 
 Add the following to the update function:
 
-{% highlight cpp %}
+{% highlight cpp linenos %}
 void Awake()
 {
     trackedObj = GetComponent<SteamVR_TrackedObject>();
@@ -71,7 +74,7 @@ In this way the trackedObj is set when Awake is called (at the beginning of the 
 
 In the Update function, add the code below:
 
-{% highlight cpp %}
+{% highlight cpp linenos %}
 SteamVR_Controller.Device Controller = SteamVR_Controller.Input((int)trackedObj.index);
 
 if (Controller.GetAxis() != Vector2.zero)
@@ -122,7 +125,7 @@ Hit Play and then click on the Scene tab. Select the Controller in the hierarchy
 Now open the same script as before. Add this two additional variables just after the trackedObj one:
 
 
-{% highlight cpp %}
+{% highlight cpp linenos %}
 private SteamVR_TrackedObject trackedObj;
 private GameObject collidingObject; 
 private GameObject objectInHand;
@@ -132,7 +135,7 @@ private GameObject objectInHand;
 
 Now we want to listen to the trigger. If we are intersecting with an object and the trigger is pressed, we want to grab that object. Add the following lines after the Awake method:
 
-{% highlight cpp %}
+{% highlight cpp linenos %}
 public void OnTriggerEnter(Collider collider)
 {
     SetCollidingObject(collider);
@@ -169,7 +172,7 @@ You can refer to the <a href="https://docs.unity3d.com/ScriptReference/MonoBehav
 
 Now we need to add the code to actually grab an object:
 
-{% highlight cpp %}
+{% highlight cpp linenos %}
 private void GrabObject()
 {
     objectInHand = collidingObject;
@@ -204,7 +207,7 @@ private void ReleaseObject()
 
 Finally we can update the "Update" method to grab an object when the controller trigger is pressed:
 
-{% highlight cpp %}
+{% highlight cpp linenos %}
 if (Controller.GetHairTriggerDown())
 {
     if (collidingObject)
@@ -235,7 +238,7 @@ Make a new script in the Scripts folder and name it "LaserPointer".<br><br>
 Write the following code:
 
 
-{% highlight cpp %}
+{% highlight cpp linenos %}
 private SteamVR_TrackedObject trackedObj;
 
 void Awake()
@@ -260,7 +263,7 @@ private Vector3 hitPoint;
 
 Add this method to show the laser:
 
-{% highlight cpp %}
+{% highlight cpp linenos %}
 private void ShowLaser(RaycastHit hit)
 {
     laser.SetActive(true);
@@ -281,7 +284,7 @@ laserTransform = laser.transform;
 
 Finally, add this in Update method:
 
-{% highlight cpp %}
+{% highlight cpp linenos %}
 if (Controller.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
 {
     RaycastHit hit;
@@ -301,6 +304,9 @@ else
 Drag the script and drop it in the Inspector, with both controllers selected. You can see that one of the properties is the Laser Prefab. Drag the Laser prefab that you find the Prefab folder, and drop it into that field.<br><br>
 
 Hit Play! You should see a red laser coming out of the controller when you click the trackpad. 
+    
+
+
 
 
 
