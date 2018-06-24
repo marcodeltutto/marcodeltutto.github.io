@@ -306,6 +306,81 @@ Hit Play! You should see a red laser coming out of the controller when you click
     
 
 
+<h2>Teleporting in the Scene</h2>
+
+In this part of the tutorial you will learn how to teleport in the scene.<br><br>
+
+Open the LaserPointer script, and add the following variables at the beginning:
+
+{% highlight cpp linenos %}
+public Transform cameraRigTransform; 
+public GameObject teleportReticlePrefab;
+private GameObject reticle;
+private Transform teleportReticleTransform; 
+public Transform headTransform; 
+public Vector3 teleportReticleOffset; 
+public LayerMask teleportMask; 
+private bool shouldTeleport; 
+{% endhighlight %}
+
+In general we want to teleport only to particular objects in the scene, not to all of them. Open the Room prefab in the Hierarchy, and click on the Floor prefab. In the Unity Inspector you will see a dropdown meanu called "Layer". Open it and click on "Add Layer". Write a new name for the Layer ("Can Teleport") and hit "Enter". <br><br>
+
+We want to be able to teleport to all objects that have the "Can Teleport" layer. Add this layer to the objects you want to be able to teleport to (table, bed, ...). <br><br>
+
+Then go back to the script. In the line "if (Physics.Raycast(trackedObj.transform.position...", add the "teleportMask" variable at the end, inside the "Physics.Raycast()" call. This will allow to Raycast only to objects with a specific teleportMask.<br><br>
+
+In the Update method, add:
+
+{% highlight cpp linenos %}
+reticle.SetActive(true);
+teleportReticleTransform.position = hitPoint + teleportReticleOffset;
+shouldTeleport = true;
+{% endhighlight %}
+
+
+While still in the Update() method, find laser.SetActive(false); and add the following line underneath it:\
+
+{% highlight cpp linenos %}
+reticle.SetActive(false);
+{% endhighlight %}
+
+Also add this code to handle the teleporting:
+
+{% highlight cpp linenos %}
+private void Teleport()
+{
+    shouldTeleport = false;
+    reticle.SetActive(false);
+    Vector3 difference = cameraRigTransform.position - headTransform.position;
+    difference.y = 0;
+    cameraRigTransform.position = hitPoint + difference;
+}
+{% endhighlight %}
+
+Add this inside Update, at the end:
+
+{% highlight cpp linenos %}
+if (Controller.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad) && shouldTeleport)
+{
+    Teleport();
+}
+{% endhighlight %}
+
+
+And finally, add this in the Start method:
+
+{% highlight cpp linenos %}
+reticle = Instantiate(teleportReticlePrefab);
+teleportReticleTransform = reticle.transform;
+{% endhighlight %}
+
+Go back to Unity and with both controllers selected drag the CameraRig, CameraHead and TeleportReticle in the appropriate files in the Laser Point script attached to the controllers.<br><br>
+
+Hit Play and test it!
+
+
+
+
 
 
 
