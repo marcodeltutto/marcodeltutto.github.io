@@ -2638,6 +2638,8 @@ sub, sup {
     #about {
     width: 80%}
 }.tech {
+    /*display: inline-block;*/
+    padding: 5px;
     /*margin: 10px;*/
 }
 
