@@ -90,11 +90,11 @@ public class RayCast : MonoBehaviour {
 
 
 
-    //private double barDisplay = 0;
-    //public Vector2 pos = new Vector2(20,40);
-    //public Vector2 size = new Vector2(60,20);
-    //public Texture2D progressBarEmpty;
-    //public Texture2D progressBarFull;
+    private double barDisplay = 0;
+    public Vector2 pos = new Vector2(20,40);
+    public Vector2 size = new Vector2(60,20);
+    public Texture2D progressBarEmpty;
+    public Texture2D progressBarFull;
 
 
     Image foregroundImage;
@@ -214,46 +214,50 @@ public class RayCast : MonoBehaviour {
 
     }
 
-    //private void OnGUI()
-    //{
+    private void OnGUI()
+    {
 
- //       //Texture2D texture = new Texture2D(2, 2, TextureFormat.ARGB32, false);
+        //Texture2D texture = new Texture2D(2, 2, TextureFormat.ARGB32, false);
 
- //       //// set the pixel values
- //       //texture.SetPixel(0, 0, new Color(1.0f, 1.0f, 1.0f, 0.5f));
- //       //texture.SetPixel(1, 0, Color.clear);
- //       //texture.SetPixel(0, 1, Color.white);
- //       //texture.SetPixel(1, 1, Color.black);
+        //// set the pixel values
+        //texture.SetPixel(0, 0, new Color(1.0f, 1.0f, 1.0f, 0.5f));
+        //texture.SetPixel(1, 0, Color.clear);
+        //texture.SetPixel(0, 1, Color.white);
+        //texture.SetPixel(1, 1, Color.black);
 
- //       //progressBarEmpty = texture;
-
-
+        //progressBarEmpty = texture;
 
 
 
- //       //double frac = barDisplay;
- //       double frac = timeToElectricBox / totalTime;
 
- //       // draw the background:
 
- //       GUI.BeginGroup(new Rect(pos.x, pos.y, size.x, size.y));
- //       GUI.backgroundColor = Color.red;
- //       GUI.color = Color.red;
- //       GUI.Box(new Rect(0, 0, size.x, size.y), progressBarEmpty);
+        //double frac = barDisplay;
+        double frac = timeToElectricBox / totalTime;
 
- //         // draw the filled-in part:
- //         GUI.BeginGroup(new Rect(0, 0, size.x * (float)frac, size.y));
- //         GUI.Box(new Rect(0, 0, size.x, size.y), progressBarFull);
- //         GUI.EndGroup();
+        // draw the background:
 
- //       GUI.EndGroup();
-    //}
+        GUI.BeginGroup(new Rect(pos.x, pos.y, size.x, size.y));
+        GUI.backgroundColor = Color.red;
+        GUI.color = Color.red;
+        GUI.Box(new Rect(0, 0, size.x, size.y), progressBarEmpty);
+
+          // draw the filled-in part:
+          GUI.BeginGroup(new Rect(0, 0, size.x * (float)frac, size.y));
+          GUI.Box(new Rect(0, 0, size.x, size.y), progressBarFull);
+          GUI.EndGroup();
+
+        GUI.EndGroup();
+    }
 }
 
 {% endhighlight %}
 
 
 
+
+<h3>Progress Bar</h3>
+
+<a href="https://xinyustudio.wordpress.com/2015/08/06/unity3d-progressbar-using-new-ui-system/"> Follow this.</a>.
 
 
 <h3>To Move The Camera with the Keyboard</h3>
