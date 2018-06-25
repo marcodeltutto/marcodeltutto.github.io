@@ -137,9 +137,11 @@ If you have other objects that must be seen in the network, you need to add the 
 [Command]
 void CmdInstantiate() {
     var cube = Instantiate(CubePrefab, CubeSpawnTransform.position, Quaternion.identity) as GameObject;
-    NetworkSerever.Spawn(var);
+    NetworkServer.Spawn(var);
 }
 {% endhighlight %}
+
+<a href="https://docs.unity3d.com/Manual/UNetSpawning.html">Here</a> you can find the Unity documentation about Spawning.
 
 
 
