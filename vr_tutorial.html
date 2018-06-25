@@ -1,0 +1,285 @@
+---
+layout: tutorial
+---
+
+
+
+<h1>Vr Tutorial Sandbox</h1>
+
+
+
+<h3>To Change Image</h3>
+
+{% highlight cpp linenos %}
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class ChangeImage : MonoBehaviour {
+
+    private Image myImageComponent;
+    public Sprite myFirstImage; //Drag your first sprite here in inspector.
+    public Sprite mySecondImage; //Drag your second sprite here in inspector.
+
+    private bool first = false;
+
+    // Use this for initialization
+    void Start () {
+
+        myImageComponent = GetComponent<Image>(); //Our image component is the one attached to this gameObject.
+        
+    }
+    
+    // Update is called once per frame
+    void Update () {
+
+        if (Input.GetKeyDown("space")) {
+            Debug.Log("Space pressed");
+            if (first)
+            {
+                Debug.Log("First");
+                SetImage2();
+                first = false;
+            }
+            else {
+                Debug.Log("Second");
+                SetImage1();
+                first = true;
+            }
+        }   
+    }
+
+    public void SetImage1() //method to set our first image
+    {
+        myImageComponent.sprite = myFirstImage;
+    }
+
+    public void SetImage2()
+    {
+        myImageComponent.sprite = mySecondImage;
+    }
+}
+{% endhighlight %}
+
+
+
+
+
+<h3>To RayCast</h3>
+
+{% highlight cpp linenos %}
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using ProgressBar;
+
+public class RayCast : MonoBehaviour {
+
+    private float maxDistance = 10;
+    private Text txtRef;
+    public GameObject thetext;
+    public GameObject thetext_other;
+
+
+    private float totalTime = 0.0f;
+    private float timeToElectricBox = 0.0f;
+    private float timeToOther = 0.0f;
+
+
+
+
+    //private double barDisplay = 0;
+    //public Vector2 pos = new Vector2(20,40);
+    //public Vector2 size = new Vector2(60,20);
+    //public Texture2D progressBarEmpty;
+    //public Texture2D progressBarFull;
+
+
+    Image foregroundImage;
+
+    public float Value
+    {
+        get
+        {
+            if (foregroundImage != null)
+                return (int)(foregroundImage.fillAmount * 100);
+            else
+                return 0;
+        }
+        set
+        {
+            if (foregroundImage != null)
+                foregroundImage.fillAmount = value / 100f;
+        }
+    }
+
+
+
+    // Use this for initialization
+    void Start () {
+
+        GameObject thecamera = GameObject.Find("Main Camera");
+        GameObject thecanvas = thecamera.transform.Find("Canvas").gameObject;
+        foregroundImage = thecanvas.transform.Find("ForegroundImage").gameObject.GetComponent<Image>();
+
+        Value = 0;
+        
+    }
+    
+    // Update is called once per frame
+    void Update () {
+
+
+        //Debug.Log("Total Time: " + totalTime + "     DeltaTime: " + Time.deltaTime);
+
+        RaycastHit hit;
+
+        if(Physics.Raycast(transform.position, transform.forward, out hit, maxDistance)) {
+            Debug.Log("Hitting " + hit.collider.name);
+
+            totalTime += Time.deltaTime;
+
+            if (hit.collider.name == "Electricity_Box")
+            {
+
+                timeToElectricBox += Time.deltaTime;
+
+                //Debug.Log(">>>>>>> Time to Electricity_Box " + timeToElectricBox);
+
+                //txtRef = GameObject.Find("Main Camera/Canvas").GetComponent<Text>();
+                //Debug.Log("PPP " + GameObject.Find("Main Camera").name);
+
+                //GameObject thecamera = GameObject.Find("Main Camera");
+
+                //Debug.Log("PPP " + thecamera.name);
+
+                //GameObject thecanvas = thecamera.transform.Find("Canvas").gameObject;
+
+                //Debug.Log("PPP " + thecanvas.name);
+
+                //Text thetext = thecanvas.transform.Find("Text").gameObject.GetComponent<Text>();
+
+                //Debug.Log("PPP " + thecanvas.transform.Find("Text").gameObject.name);
+
+                //thetext.text = "Hey!";
+
+
+            }
+            else {
+                //Debug.Log("<<<<<<<< Time to Other " + timeToOther);
+
+                timeToOther += Time.deltaTime;
+
+
+            }
+        }
+
+        //Debug.Log("Fraction to Electric: " + timeToElectricBox/totalTime);
+        //Debug.Log("Fraction to Other: " + timeToOther / totalTime);
+
+        float frac = timeToElectricBox / totalTime;
+        float frac2 = timeToOther / totalTime;
+
+        bool use_green_color = false;
+        if (frac < 0.6 && frac2 < 0.6) {
+
+            use_green_color = true;
+
+        }
+
+        Text thetexttext = thetext.GetComponent<Text>();
+        thetexttext.text = "Frac. to El.: " + frac.ToString("F2");
+
+        Text thetexttext2 = thetext_other.GetComponent<Text>();
+        thetexttext2.text = "Frac. to Other.: " + frac2.ToString("F2");
+
+        if (use_green_color)
+        {
+            thetexttext.color = new Color(0.0f / 255.0f, 128.0f / 255.0f, 0.0f / 255.0f);
+            thetexttext2.color = new Color(0.0f / 255.0f, 128.0f / 255.0f, 0.0f / 255.0f);
+        }
+        else {
+            thetexttext.color = new Color(255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f);
+            thetexttext2.color = new Color(255.0f / 255.0f, 255.0f / 255.0f, 255.0f / 255.0f);
+        }
+
+        barDisplay = Time.time * 0.05;
+
+
+        Value = frac * 100;
+
+
+
+    }
+
+    //private void OnGUI()
+    //{
+
+ //       //Texture2D texture = new Texture2D(2, 2, TextureFormat.ARGB32, false);
+
+ //       //// set the pixel values
+ //       //texture.SetPixel(0, 0, new Color(1.0f, 1.0f, 1.0f, 0.5f));
+ //       //texture.SetPixel(1, 0, Color.clear);
+ //       //texture.SetPixel(0, 1, Color.white);
+ //       //texture.SetPixel(1, 1, Color.black);
+
+ //       //progressBarEmpty = texture;
+
+
+
+
+
+ //       //double frac = barDisplay;
+ //       double frac = timeToElectricBox / totalTime;
+
+ //       // draw the background:
+
+ //       GUI.BeginGroup(new Rect(pos.x, pos.y, size.x, size.y));
+ //       GUI.backgroundColor = Color.red;
+ //       GUI.color = Color.red;
+ //       GUI.Box(new Rect(0, 0, size.x, size.y), progressBarEmpty);
+
+ //         // draw the filled-in part:
+ //         GUI.BeginGroup(new Rect(0, 0, size.x * (float)frac, size.y));
+ //         GUI.Box(new Rect(0, 0, size.x, size.y), progressBarFull);
+ //         GUI.EndGroup();
+
+ //       GUI.EndGroup();
+    //}
+}
+
+{% endhighlight %}
+
+
+
+
+
+<h3>To Move The Camera with the Keyboard</h3>
+
+{% highlight cpp linenos %}
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Networking;
+
+public class MoveCamera : MonoBehaviour
+{
+
+    public float speed = 10.0F;
+    public float rotationSpeed = 100.0F;
+
+    void Update()
+    {
+        float translation = Input.GetAxis("Vertical") * speed;
+        float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
+
+        translation *= Time.deltaTime;
+        rotation *= Time.deltaTime;
+        transform.Translate(0, 0, translation);
+        transform.Rotate(0, rotation, 0);
+    }
+}
+{% endhighlight %}
+
