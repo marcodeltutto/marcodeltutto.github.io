@@ -1,4 +1,4 @@
-The MIT License (MIT)
+sudo gem install bundler jekyllThe MIT License (MIT)
 
 Copyright (c) 2016 Nathan Randecker
 
