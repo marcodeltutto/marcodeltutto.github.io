@@ -1,6 +1,5 @@
 {% if site.url %}
   {% assign base_path = site.url | append: site.baseurl %}
-  {{ site.baseurl | jsonify }}
 {% else %}
   {% assign base_path = site.github.url %}
 {% endif %}
