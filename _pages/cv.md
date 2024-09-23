@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "CV"
+title: "Curriculum Vitae"
 permalink: /cv/
 author_profile: true
 redirect_from:
@@ -9,23 +9,52 @@ redirect_from:
 
 {% include base_path %}
 
-Education
-======
-* B.S. in GitHub, GitHub University, 2012
-* M.S. in Jekyll, GitHub University, 2014
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
 
-Work experience
+Research Positions
+------
+
+* 2023 - present, Wilson Fellow, Associate Scientist, Fermi National Accelerator Laboratory
+* 2019 - 2023, Lederman Fellow, Research Associate, Fermi National Accelerator Laboratory
+* 2019, Postdoctoral Fellow, Postdoc, Harvard University
+
+Education
+------
+* 2015 – 2019, Ph.D. in Particle Physics, University of Oxford, UK
+* 2013 – 2015, M.S. in Physics _cum laude_, University of Rome “Sapienza”
+* 2010 – 2013, B.S. in Physics _cum laude_, University of Rome “Sapienza”
+
+
+Awards
+------
+* 2023, University Reseach Fellowship (__URF__), Royal Society UK, _declined_
+* 2023, Ernest Rutherford Fellowship (__ERF__), UKRI UK, _declined_
+* 2023, URA Tollestrup Award
+* 2022, Fermilab Lab-Directed R&D (LDRD)
+* 2021, University of Chicago Rising Star
+* 2021, Argonne ADSP Award
+* 2020, Exceptional Performance Recognition Award Program
+* 2020, Fermilab Reward and Recognition
+* 2016, Donald H. Perkins Prize, University of Oxford
+
+
+
+
+<!-- Work experience
 ======
-* Summer 2015: Research Assistant
+* Spring 2024: Academic Pages Collaborator
   * Github University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
+  * Duties includes: Updates and improvements to template
+  * Supervisor: The Users
 
 * Fall 2015: Research Assistant
   * Github University
   * Duties included: Merging pull requests
   * Supervisor: Professor Hub
+
+* Summer 2015: Research Assistant
+  * Github University
+  * Duties included: Tagging issues
+  * Supervisor: Professor Git
   
 Skills
 ======
@@ -36,24 +65,8 @@ Skills
   * Sub-skill 2.3
 * Skill 3
 
-Publications
-======
-  <ul>{% for post in site.publications %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Talks
-======
-  <ul>{% for post in site.talks %}
-    {% include archive-single-talk-cv.html %}
-  {% endfor %}</ul>
-  
-Teaching
-======
-  <ul>{% for post in site.teaching %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
+
   
 Service and leadership
 ======
-* Currently signed in to 43 different slack teams
+* Currently signed in to 43 different slack teams -->

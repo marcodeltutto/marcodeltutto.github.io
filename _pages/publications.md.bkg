@@ -1,0 +1,17 @@
+---
+layout: archive
+title: "Publications"
+permalink: /publications/
+author_profile: true
+redirect_from:
+  - /resume
+---
+
+{% include base_path %}
+
+Most Impactful Publications
+------
+
+* M. Buizza Avanzini, M. Del Tutto, et al, _Comparisons and challenges of modern neutrino-scattering experiments_, Phys. Rev. D 105, 092004
+
+
