@@ -13,15 +13,15 @@ redirect_from:
 Research Positions
 ------
 
-* 2023 - present, Wilson Fellow, Associate Scientist, Fermi National Accelerator Laboratory
-* 2019 - 2023, Lederman Fellow, Research Associate, Fermi National Accelerator Laboratory
+* 2023 - present, [Wilson Fellow](https://www.fnal.gov/pub/forphysicists/fellowships/robert_wilson/index.html) / Associate Scientist, Fermi National Accelerator Laboratory
+* 2019 - 2023, [Lederman Fellow](https://www.fnal.gov/pub/forphysicists/fellowships/leon_lederman/index.html) / Research Associate, Fermi National Accelerator Laboratory
 * 2019, Postdoctoral Fellow, Postdoc, Harvard University
 
 Education
 ------
 * 2015 – 2019, Ph.D. in Particle Physics, University of Oxford, UK
-* 2013 – 2015, M.S. in Physics _cum laude_, University of Rome “Sapienza”
-* 2010 – 2013, B.S. in Physics _cum laude_, University of Rome “Sapienza”
+* 2013 – 2015, M.S. in Physics _cum laude_, University of Rome “Sapienza”, IT
+* 2010 – 2013, B.S. in Physics _cum laude_, University of Rome “Sapienza”, IT
 
 
 Awards
